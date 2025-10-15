@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<MilXDocument_Layer xmlns="http://gs-soft.com/MilX/V3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<MssLibraryVersionTag>2025.02.20</MssLibraryVersionTag>
+	<MilXLayer>
+		<Name>New Layer</Name>
+		<LayerType>Normal</LayerType>
+		<GraphicList>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SFGPUCI--------"/&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>7.58081554566821</X>
+						<Y>46.6012077292767</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SFGPUCA--------"/&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>8.05927172428669</X>
+						<Y>46.7341033294238</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SFGPUCFRMS-----"/&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>7.31880382880571</X>
+						<Y>46.7965293886595</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+		</GraphicList>
+		<CoordSystemType>WGS84</CoordSystemType>
+		<ViewScale>0.1</ViewScale>
+		<SymbolSize>1</SymbolSize>
+	</MilXLayer>
+</MilXDocument_Layer>
