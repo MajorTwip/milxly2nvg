@@ -9,19 +9,17 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.util.List;
 
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLEventFactory;
 import javax.xml.stream.XMLEventReader;
-import javax.xml.stream.XMLEventWriter;
 import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ch.comstock.milxly2nvg.milxly.MilXGraphic;
 import ch.comstock.milxly2nvg.nvg.ContentType;
+import ch.comstock.milxly2nvg.nvg.NvgType;
 import ch.comstock.milxly2nvg.nvg.ObjectFactory;
 import ch.comstock.milxly2nvg.nvg.PointType;
 import jakarta.xml.bind.JAXBContext;
@@ -58,37 +56,28 @@ public class Converter {
 				reader = new InputStreamReader(new FileInputStream(inputFile.toFile()), StandardCharsets.UTF_8);
 			}
 
-			log.debug("Reader initialized, creating marshallers");
+			log.debug("Reader initialized, creating unmarshallers");
 
 			// Create JAXB context and unmarshaller for MilXGraphic. Grpahic elements will
-			// be unmarshalled separately
+			// be unmarshalled sequentially
 			JAXBContext milXGraphicContext = JAXBContext.newInstance(MilXGraphic.class);
-			JAXBContext nvgContext = JAXBContext.newInstance(ContentType.class);
 			Unmarshaller milXGraphicUnmarshaller = milXGraphicContext.createUnmarshaller();
 
 			// Create XML event reader to parse the XML
 			XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
 			XMLEventReader eventReader = xmlInputFactory.createXMLEventReader(reader);
 
-			// Prapare the writer for output NVG file
+			// Create JAXB context and marshaller for NVG output
+			JAXBContext nvgContext = JAXBContext.newInstance(ContentType.class);
 			ObjectFactory nvgObjectFactory = new ObjectFactory();
 			FileOutputStream writer = new FileOutputStream(outputFile.toFile());
-	        XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newFactory();
-            XMLEventWriter eventWriter = xmlOutputFactory.createXMLEventWriter(writer);
-            XMLEventFactory  eventFactory = XMLEventFactory.newInstance();
             Marshaller marshaller = nvgContext.createMarshaller();
-
-            marshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            eventWriter.add(eventFactory.createStartDocument("UTF-8", "1.0"));
-            eventWriter.add(eventFactory.createStartElement("", "https://tide.act.nato.int/schemas/2012/10/nvg", "nvg"));
-            eventWriter.add(eventFactory.createNamespace("", "https://tide.act.nato.int/schemas/2012/10/nvg"));
-            eventWriter.add(eventFactory.createNamespace("g", "https://tide.assct.nato.int/schemas/2012/10/nvg"));
-            eventWriter.add(eventFactory.createNamespace("nt", "http://purl.org/dc/terms/"));
-            eventWriter.add(eventFactory.createAttribute("version", "2.0.2"));
             
-            
+            //initialize root element for nvg
+            NvgType nvgRoot = nvgObjectFactory.createNvgType();
+            nvgRoot.setVersion("2.0.2");
+            List<ContentType> nvgContent = nvgRoot.getGOrCompositeOrText();
             
 			while (eventReader.hasNext()) {
 				if (eventReader.peek().isStartElement()) {
@@ -96,16 +85,17 @@ public class Converter {
 					try {
 						switch (elementName) {
 						case "MilXGraphic":
-							//log.info("Unmarshalling MilXGraphic element: {}", eventReader.peek().asStartElement().getName().getLocalPart());
+							log.info("Processing MilXGraphic element");
+							// Unmarshal MilXGraphic element
 							JAXBElement<MilXGraphic> milXGraphicElementWrapper = milXGraphicUnmarshaller
 									.unmarshal(eventReader, MilXGraphic.class);
 							MilXGraphic milXGraphicElement = milXGraphicElementWrapper.getValue();
+							// Convert to NVG PointType
 							PointType nvgPoint = nvgObjectFactory.createPointType();
-							System.out.println("");
 							nvgPoint.setX(milXGraphicElement.getPointList().getPoint().get(0).getX());
 							nvgPoint.setY(milXGraphicElement.getPointList().getPoint().get(0).getY());
-							marshaller.marshal(new JAXBElement<PointType>(new QName("","point"), PointType.class, nvgPoint), eventWriter);
-							
+							// Add to NVG content list
+							nvgContent.add(nvgPoint);								
 							break;
 						default:
 							break;
@@ -118,8 +108,9 @@ public class Converter {
 				}
 				eventReader.nextEvent();
 			}
-			eventWriter.add(eventFactory.createEndElement("", "https://tide.act.nato.int/schemas/2012/10/nvg", "nvg"));
-			eventWriter.add(eventFactory.createEndDocument());
+			// Marshal NVG content to output file
+			marshaller.marshal(nvgObjectFactory.createNvg(nvgRoot), writer);
+			writer.close();
 		} catch (XMLStreamException e) {
 			log.error("XML Stream Exception during conversion", e.getMessage());
 			e.printStackTrace();
