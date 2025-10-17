@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import jakarta.xml.bind.JAXBException;
+
 @SpringBootApplication
 public class Milxly2nvgApplication implements CommandLineRunner {
 
@@ -42,7 +44,12 @@ public class Milxly2nvgApplication implements CommandLineRunner {
 					.filter(path -> path.toString().endsWith(".milxly")).forEach(path -> {
 						if (path.getFileName().toString().endsWith(".milxly")) {
 							log.debug("Found MILXLY file: {}", path);
-							Converter.convert(path);
+							try {
+								Converter.convert(path);
+							} catch (JAXBException e) {
+								log.error("JAXB Exception during conversion of file: {}", path, e);
+								e.printStackTrace();
+							}
 						}
 					});
 		} catch (IOException e) {
