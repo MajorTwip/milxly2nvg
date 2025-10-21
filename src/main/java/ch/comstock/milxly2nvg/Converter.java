@@ -85,7 +85,7 @@ public class Converter {
 					try {
 						switch (elementName) {
 						case "MilXGraphic":
-							log.info("Processing MilXGraphic element");
+							log.debug("Processing MilXGraphic element");
 							// Unmarshal MilXGraphic element
 							JAXBElement<MilXGraphic> milXGraphicElementWrapper = milXGraphicUnmarshaller
 									.unmarshal(eventReader, MilXGraphic.class);
@@ -96,6 +96,11 @@ public class Converter {
 							nvgPoint.setY(milXGraphicElement.getPointList().getPoint().get(0).getY());
 							log.info("Get Symbol: {}", milXGraphicElement.getMSSSymbol().getCode2525B());
 							nvgPoint.setSymbol("2525b:" + milXGraphicElement.getMSSSymbol().getCode2525B());
+							nvgPoint.setModifiers(milXGraphicElement.getMSSSymbol().getAttributesString());
+							log.debug("AttributeString: {}", milXGraphicElement.getMSSSymbol().getAttributesString());
+							if(milXGraphicElement.getMSSSymbol().getAttributes().containsKey("T")) {
+								nvgPoint.setLabel(milXGraphicElement.getMSSSymbol().getAttributes().get("T"));
+							}
 							// Add to NVG content list
 							nvgContent.add(nvgPoint);								
 							break;

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<nvg xmlns="https://tide.act.nato.int/schemas/2012/10/nvg" version="2.0.2">
+    <point x="7.3358216233046" y="46.8345720069469" symbol="2525b:SHGPUCI--------" modifiers=""/>
+    <point x="7.63186548087932" y="46.8220689656074" symbol="2525b:SFGPUCIN-------" modifiers=""/>
+    <point x="7.72567361681863" y="46.6676256314121" symbol="2525b:SFGPUCIZ--A----" modifiers=""/>
+    <point x="7.41501030948714" y="46.6943718036282" symbol="2525b:SFGPUCA----E---" modifiers=""/>
+    <point x="7.83653777747419" y="46.8212353261101" symbol="2525b:SFGPUCFRMS-----" modifiers="T:12;G:Commenr;M:1" label="12"/>
+    <point x="7.52343789518323" y="46.6023763639502" symbol="2525b:SFGPUCFM--EH---" modifiers=""/>
+    <point x="7.85724866462962" y="46.9278361266151" symbol="2525b:SFGPUCFO-------" modifiers=""/>
+</nvg>

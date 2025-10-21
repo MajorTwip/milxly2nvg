@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<MilXDocument_Layer xmlns="http://gs-soft.com/MilX/V3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<MssLibraryVersionTag>2025.02.20</MssLibraryVersionTag>
+	<MilXLayer>
+		<Name>New Layer</Name>
+		<LayerType>Normal</LayerType>
+		<GraphicList>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SHGPUCI--------"/&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>7.3358216233046</X>
+						<Y>46.8345720069469</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SFGPUCIN-------"/&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>7.63186548087932</X>
+						<Y>46.8220689656074</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SFGPUCIZ--A----"/&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>7.72567361681863</X>
+						<Y>46.6676256314121</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SFGPUCA----E---"/&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>7.41501030948714</X>
+						<Y>46.6943718036282</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SFGPUCFRMS-----"&gt;&lt;Attribute ID="G"&gt;Commenr&lt;/Attribute&gt;&lt;Attribute ID="M"&gt;1&lt;/Attribute&gt;&lt;Attribute ID="T"&gt;12&lt;/Attribute&gt;&lt;/Symbol&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>7.83653777747419</X>
+						<Y>46.8212353261101</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SFGPUCFM--EH---"/&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>7.52343789518323</X>
+						<Y>46.6023763639502</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+			<MilXGraphic>
+				<MssStringXML>&lt;Symbol ID="SFGPUCFO-------"/&gt;</MssStringXML>
+				<PointList>
+					<Point>
+						<X>7.85724866462962</X>
+						<Y>46.9278361266151</Y>
+					</Point>
+				</PointList>
+			</MilXGraphic>
+		</GraphicList>
+		<CoordSystemType>WGS84</CoordSystemType>
+		<ViewScale>0.1</ViewScale>
+		<SymbolSize>1</SymbolSize>
+	</MilXLayer>
+</MilXDocument_Layer>
