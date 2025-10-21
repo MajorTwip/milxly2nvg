@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <nvg xmlns="https://tide.act.nato.int/schemas/2012/10/nvg" version="2.0.2">
-    <point x="7.58081554566821" y="46.6012077292767"/>
-    <point x="8.05927172428669" y="46.7341033294238"/>
-    <point x="7.31880382880571" y="46.7965293886595"/>
+    <point x="7.58081554566821" y="46.6012077292767" symbol="2525b:SFGPUCI--------"/>
+    <point x="8.05927172428669" y="46.7341033294238" symbol="2525b:SFGPUCA--------"/>
+    <point x="7.31880382880571" y="46.7965293886595" symbol="2525b:SFGPUCFRMS-----"/>
 </nvg>

@@ -94,6 +94,8 @@ public class Converter {
 							PointType nvgPoint = nvgObjectFactory.createPointType();
 							nvgPoint.setX(milXGraphicElement.getPointList().getPoint().get(0).getX());
 							nvgPoint.setY(milXGraphicElement.getPointList().getPoint().get(0).getY());
+							log.info("Get Symbol: {}", milXGraphicElement.getMSSSymbol().getCode2525B());
+							nvgPoint.setSymbol("2525b:" + milXGraphicElement.getMSSSymbol().getCode2525B());
 							// Add to NVG content list
 							nvgContent.add(nvgPoint);								
 							break;

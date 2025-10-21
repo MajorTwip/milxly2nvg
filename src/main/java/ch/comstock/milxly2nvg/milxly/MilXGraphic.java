@@ -1,8 +1,6 @@
 
 package ch.comstock.milxly2nvg.milxly;
 
-import java.util.List;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -17,4 +15,13 @@ public class MilXGraphic {
 	private String MssStringXML;
 	@XmlElement
 	private PointList PointList;
+	
+	public MSSSymbol getMSSSymbol() {
+		if (MssStringXML == null || MssStringXML.isEmpty()) {
+			return null;
+		}
+		return new MSSSymbol(MssStringXML);
+	}
 }
+
+
